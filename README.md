@@ -23,3 +23,8 @@ In NASA's words:
 I really recommend getting to know the service through the official documentation before using **nasadata**. 
 
 In short, this packages reads from the webservice, parses the data and returns it in various **R** friendly formats (data.frames and lists). It can thus be used for a range of applications. 
+
+## Further documentation
+
+* A more complete vignette of this package, with examples, can be found [here](http://enelmargen.org/nasadata/)
+* [NASA Github Portal](https://github.com/nasa)
