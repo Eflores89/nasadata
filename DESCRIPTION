@@ -1,0 +1,11 @@
+Package: nasadata
+Type: Package
+Title: Interface to various NASA API's
+Version: 0.9.0
+Author: Eduardo Flores
+Maintainer: Eduardo Flores <eduardo@enelmargen.org>
+Description: Provides functions to access NASA's Earth Imagery and Assets API
+    and the Earth Observatory Natural Event Tracker (EONET) webservice.
+License: CC0
+LazyData: TRUE
+RoxygenNote: 5.0.1
