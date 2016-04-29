@@ -2,7 +2,7 @@
 
 *An R interface to access some of NASA's API's*
 
-## :construction: **Still under *heavy* construction**
+## :construction: **Still under *heavy* construction** :construction:
 
 ## Imagery and Assets API :satellite: :earth_americas: 
 
