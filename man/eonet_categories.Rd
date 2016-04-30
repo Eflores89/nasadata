@@ -4,9 +4,22 @@
 \alias{eonet_categories}
 \title{Calls EONET category webservice}
 \usage{
-eonet_categories(limit = 10)
+eonet_categories()
 }
 \description{
-Calls NASA's Earth Imagery API and returns data.frame with information on time
+Calls NASA's EONET Webservice and returns all categories available.
+}
+\details{
+Returns data.frame with 5 columns
+ @field id Unique id (can be used to filter \code{earth_event})
+ @field title Title of category
+ @field link Direct json link (the result is equal to filtering all \code{earth_event} with category)
+ @field description Description of category
+ @field layers Layers of category (see oficial documentation)
+}
+\examples{
+\dontrun{
+categories <- eonet_categories()
+}
 }
 

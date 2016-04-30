@@ -4,9 +4,21 @@
 \alias{eonet_sources}
 \title{Calls EONET sources webservice}
 \usage{
-eonet_sources(limit = 10)
+eonet_sources()
 }
 \description{
-Calls NASA's Earth Imagery API and returns data.frame with information on time
+Calls NASA's EONET Webservice and returns all sources available.
+}
+\details{
+Returns data.frame with 4 columns
+ @field id Unique id (can be used to filter \code{earth_event})
+ @field title Title of source
+ @field source Official source URL
+ @field link Direct json link (the result is equal to filtering all \code{earth_event} with source)
+}
+\examples{
+\dontrun{
+sources <- eonet_sources()
+}
 }
 
