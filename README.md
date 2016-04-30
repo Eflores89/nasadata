@@ -8,7 +8,9 @@
 
 NASA's Imagery and Assets API can be found [here](https://api.nasa.gov/api.html).
 
-**More explaining to do ...**
+This API intends to open access to pan-sharpened Landsat 8 imagery hosted in Google Earth Engine. The API endpoint returns an image URL and some metadata. This package essentially wraps the call, parses the json and plots the image via `rasterImage`. 
+
+There are still a lot of improvements to be done! Any suggestions are appreciated at: eduardo@enelmargen.org.
 
 
 ## EONET Webservice :pushpin: :rotating_light:
