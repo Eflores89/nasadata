@@ -28,5 +28,5 @@ In short, this packages reads from the webservice, parses the data and returns i
 
 ## Further documentation
 
-* A more complete vignette of this package, with examples, can be found [here](http://enelmargen.org/nasadata/)
+* A more complete vignette of this package, with examples, can be found [here](http://enelmargen.org/nasadata/vignette_v0/)
 * [NASA Github Portal](https://github.com/nasa)
