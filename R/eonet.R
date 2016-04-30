@@ -116,20 +116,8 @@ earth_event <- function(status = "all",
     names(sources) <- c("event_id", "source_id", "source_url")
 
   # geometry -----
-  geoms <- list_to_df(e$events$geometries)
-  geoms_l <- geoms[,1:2]
-  geoms_l$geom_event_id <- e$events$id
-  # coordinate points
-  geoms_g <- list_to_df(geoms$coordinates)
-  geoms_g <- lapply(geoms_g, FUN = unlist)
-    names(geoms_g) <- e$events$id
-  geoms_g <- plyr::ldply(geoms_g, cbind)
-    names(geoms_g) <- c("geom_event_id", "coordinate")
-  geoms_g$coord_type <- rep(c("long", "lat"),
-                            length(geoms_g$coordinate)/2)
-  # unite all coordinates
-  geo <- dplyr::inner_join(geoms_g,
-                    geoms_l, by = "geom_event_id")
+  geo <- e$events$geometries
+  names(geo) <- as.character(e$events$id)
 
   # Metadata
   meta <- data.frame("search_title" = e$title,
@@ -140,7 +128,7 @@ earth_event <- function(status = "all",
       obj <- list("Events" = events,
                   "Sources" = sources,
                   "Categories" = categories,
-                  "Geography" = as.data.frame(geo),
+                  "Geography" = geo,
                   "Meta" = meta)
   return(obj)
  }

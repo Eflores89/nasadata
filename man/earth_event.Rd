@@ -12,20 +12,17 @@ earth_event(status = "all", sources = "all", category_id = "all",
 
 \item{sources}{Accepts character id strings from EONET sources (see \code{eonet_sources})}
 
-\item{category_id}{bla}
+\item{category_id}{Accepts number id strings from EONET category tree (se \code{eonet_categories})}
 
-\item{limit}{vla}
+\item{limit}{Limit of events to download. If LimitType = "days" this is not considered. Defaults to 10.}
 
-\item{days}{jks}
+\item{days}{Limit of days (less than today) to download events from. If LimitType = "limit" this is not considered. Defaults to 20.}
 
-\item{LimitType}{lvo}
+\item{LimitType}{Type of limit to consider: "limit" (count of events), "days" (days less than today) or "all" (both limits).}
 
-\item{TrySimplify}{lasn}
+\item{TrySimplify}{If TRUE tries to coerce category and event data.frames into one (successful if there is one category per event).}
 }
 \description{
 Calls NASA's Earth Observatory Natural Event Tracker (EONET) webservice and returns a data.frame with individual event or events.
-}
-\details{
-
 }
 

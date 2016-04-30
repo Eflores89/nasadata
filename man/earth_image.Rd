@@ -23,7 +23,4 @@ earth_image(key, lon, lat, date, cloud_score = TRUE, plot = FALSE,
 \description{
 Calls NASA's Earth Imagery API and returns list with identification information and image.
 }
-\details{
-
-}
 

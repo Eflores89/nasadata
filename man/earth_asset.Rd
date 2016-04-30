@@ -2,7 +2,7 @@
 % Please edit documentation in R/assets.R
 \name{earth_asset}
 \alias{earth_asset}
-\title{Trace a satellite route}
+\title{Call Asset API}
 \usage{
 earth_asset(key, lon, lat, start_date, end_date = Sys.Date())
 }
@@ -18,6 +18,6 @@ earth_asset(key, lon, lat, start_date, end_date = Sys.Date())
 \item{end_date}{End date to search for image. In YYYY-MM-DD format. Defaults to current system date.}
 }
 \description{
-Calls NASA's Earth Imagery Assets API and returns data.frame with information on time and location between two dates to "trace" a satellites path.
+Calls NASA's Earth Imagery Assets API and returns data.frame with information on time and location of images between two dates.
 }
 

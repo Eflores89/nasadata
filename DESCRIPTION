@@ -7,5 +7,10 @@ Maintainer: Eduardo Flores <eduardo@enelmargen.org>
 Description: Provides functions to access NASA's Earth Imagery and Assets API
     and the Earth Observatory Natural Event Tracker (EONET) webservice.
 License: CC0
+Imports:
+    plyr,
+    dplyr,
+    png,
+    jsonlite
 LazyData: TRUE
 RoxygenNote: 5.0.1

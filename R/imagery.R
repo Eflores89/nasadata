@@ -9,11 +9,8 @@
 #' @param cloud_score Gives a score of percentage of cloud cover, via algorithm (see official documentation). Defaults to TRUE.
 #' @param plot If TRUE will plot the image via generic plot function.
 #'
-#' @importFrom jpeg readJPEG
 #' @importFrom png readPNG
 #' @importFrom jsonlite fromJSON
-#'
-#' @details
 #'
 #' @export
 earth_image <- function(key, lon, lat, date, cloud_score = TRUE, plot = FALSE, meta_only = FALSE)
