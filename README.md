@@ -4,16 +4,16 @@
 
 ## :construction: **Still under *heavy* construction** :construction:
 
-## Imagery and Assets API :satellite: :earth_americas: 
+### Imagery and Assets API :satellite: :earth_americas: 
 
 NASA's Imagery and Assets API can be found [here](https://api.nasa.gov/api.html).
 
 This API intends to open access to pan-sharpened Landsat 8 imagery hosted in Google Earth Engine. The API endpoint returns an image URL and some metadata. This package essentially wraps the call, parses the json and plots the image via `rasterImage`. 
 
-There are still a lot of improvements to be done! Any suggestions are appreciated at: eduardo@enelmargen.org.
+There are still a lot of improvements to be done! Any suggestions are appreciated at twitter: @eflores89 or issues.
 
 
-## EONET Webservice :pushpin: :rotating_light:
+### EONET Webservice :pushpin: :rotating_light:
 
 The official documentation of NASA's Earth Observatory Nature Event Tracker (EONET) Webservice v2.1 can be found [here](http://eonet.sci.gsfc.nasa.gov/docs/v2.1). 
 
