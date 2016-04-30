@@ -86,7 +86,8 @@ earth_event <- function(status = "all",
                     "The following is the output: ", s$error)))
   }
   if(length(e$events)<1){
-    stop("No events found. Change parameters.")
+    stop(cat(paste0("No events found. Change parameters. \n",
+                    "using: ", s)))
   }
 
   # event
