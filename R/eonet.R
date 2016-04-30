@@ -47,10 +47,10 @@ earth_event <- function(status = "all",
     s <- paste0(h, limit)
   }else{
     if(status == 1){
-      s <- paste0(h, limit, "status=open")
+      s <- paste0(h, limit, "&status=open")
     }else{
       if(status == 0){
-        s <- paste0(h, limit, "status=open")
+        s <- paste0(h, limit, "&status=open")
       }else{
         #fail
         stop("Status is not 1 (open) or 0 (closed)")
@@ -61,7 +61,7 @@ earth_event <- function(status = "all",
   if(sources=="all"){
     s <- s
   }else{
-    s <- paste0(s, "source=", sources)
+    s <- paste0(s, "&source=", sources)
   }
     # categories ----
   if(category_id=="all"){
