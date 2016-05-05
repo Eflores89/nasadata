@@ -14,7 +14,10 @@
 #' @importFrom dplyr inner_join
 #' @importFrom plyr ldply
 #' @importFrom jsonlite fromJSON
-#'
+#' @examples
+#'\dontrun{
+#' event <- earth_event(limit = 1)
+#'}
 #' @export
 earth_event <- function(status = "all",
                         sources = "all",
@@ -145,9 +148,9 @@ earth_event <- function(status = "all",
 #'  @field layers Layers of category (see oficial documentation)
 #'
 #' @examples
-#' \dontrun{
+#'\dontrun{
 #' categories <- eonet_categories()
-#' }
+#'}
 #' @export
 eonet_categories <- function()
 {
@@ -166,9 +169,9 @@ eonet_categories <- function()
 #'  @field link Direct json link (the result is equal to filtering all \code{earth_event} with source)
 #'
 #' @examples
-#' \dontrun{
+#'\dontrun{
 #' sources <- eonet_sources()
-#' }
+#'}
 #' @export
 eonet_sources <- function()
 {

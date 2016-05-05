@@ -13,6 +13,13 @@ plot_earth_image(image_png)
 To avoid S4 Classes and methods, this small wrapper simply plots an image from NASA.
 If the purpose is to this interactively on one image, set the parameter plot = TRUE in \code{earth_image}
 }
+\examples{
+\dontrun{
+key <- "123key"
+img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
+plot_earth_image(img$image_png)
+}
+}
 \seealso{
 earth_image
 }

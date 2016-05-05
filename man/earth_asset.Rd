@@ -20,4 +20,10 @@ earth_asset(key, lon, lat, start_date, end_date = Sys.Date())
 \description{
 Calls NASA's Earth Imagery Assets API and returns data.frame with information on time and location of images between two dates.
 }
+\examples{
+\dontrun{
+key <- "123key"
+img <- earth_asset(key, -100.31008, 25.66779, "2016-01-01")
+}
+}
 

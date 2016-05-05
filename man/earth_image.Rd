@@ -19,8 +19,16 @@ earth_image(key, lon, lat, date, cloud_score = TRUE, plot = FALSE,
 \item{cloud_score}{Gives a score of percentage of cloud cover, via algorithm (see official documentation). Defaults to TRUE.}
 
 \item{plot}{If TRUE will plot the image via generic plot function.}
+
+\item{meta_only}{if TRUE will only download the meta data for the image.}
 }
 \description{
 Calls NASA's Earth Imagery API and returns list with identification information and image.
+}
+\examples{
+\dontrun{
+key <- "123key"
+img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
+}
 }
 

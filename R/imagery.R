@@ -8,10 +8,15 @@
 #' @param date In YYYY-MM-DD format. The API wil return the image that is closest to this date.
 #' @param cloud_score Gives a score of percentage of cloud cover, via algorithm (see official documentation). Defaults to TRUE.
 #' @param plot If TRUE will plot the image via generic plot function.
+#' @param meta_only if TRUE will only download the meta data for the image.
 #'
 #' @importFrom png readPNG
 #' @importFrom jsonlite fromJSON
-#'
+#' @examples
+#'\dontrun{
+#' key <- "123key"
+#' img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
+#'}
 #' @export
 earth_image <- function(key, lon, lat, date, cloud_score = TRUE, plot = FALSE, meta_only = FALSE)
   {
@@ -92,6 +97,12 @@ earth_image <- function(key, lon, lat, date, cloud_score = TRUE, plot = FALSE, m
 #'
 #' @param image_png image downloaded using earth_image.
 #' @seealso earth_image
+#' @examples
+#'\dontrun{
+#' key <- "123key"
+#' img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
+#' plot_earth_image(img$image_png)
+#'}
 #' @export
 plot_earth_image <- function(image_png){
   plot.new()

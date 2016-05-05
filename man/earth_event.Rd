@@ -25,4 +25,9 @@ earth_event(status = "all", sources = "all", category_id = "all",
 \description{
 Calls NASA's Earth Observatory Natural Event Tracker (EONET) webservice and returns a data.frame with individual event or events.
 }
+\examples{
+\dontrun{
+event <- earth_event(limit = 1)
+}
+}
 

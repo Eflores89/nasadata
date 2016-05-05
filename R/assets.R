@@ -6,7 +6,11 @@
 #' @param lat Latitud of coordinate position.
 #' @param start_date Start date to search for image. In YYYY-MM-DD format.
 #' @param end_date End date to search for image. In YYYY-MM-DD format. Defaults to current system date.
-#'
+#' @examples
+#'\dontrun{
+#' key <- "123key"
+#' img <- earth_asset(key, -100.31008, 25.66779, "2016-01-01")
+#'}
 #' @export
 earth_asset <- function(key, lon, lat, start_date, end_date = Sys.Date()){
   tryCatch({
@@ -33,7 +37,7 @@ earth_asset <- function(key, lon, lat, start_date, end_date = Sys.Date()){
   }
 
   h <- "https://api.nasa.gov/planetary/earth/assets?"
-  # https://api.nasa.gov/planetary/earth/assets?lon=100.75&lat=1.5&begin=2014-02-01&api_key=DEMO_KEY
+
   query <- paste0(h,
                   "lon=", lon, "&",
                   "lat=", lat, "&",
