@@ -1,8 +1,8 @@
 # nasadata 
 
-*An R interface to access some of NASA's API's*
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nasadata)](http://cran.r-project.org/package=nasadata) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/nasadata)
 
-## :construction: **Still under *heavy* construction** :construction:
+*An R interface to access some of NASA's API's*
 
 ### Imagery and Assets API :satellite: :earth_americas: 
 
@@ -30,3 +30,4 @@ In short, this packages reads from the webservice, parses the data and returns i
 
 * A more complete vignette of this package, with examples, can be found [here](http://enelmargen.org/nasadata/vignette_v0/)
 * [NASA Github Portal](https://github.com/nasa)
+* [CRAN](https://cran.r-project.org/web/packages/nasadata/)
