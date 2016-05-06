@@ -12,6 +12,9 @@
 #'
 #' @importFrom png readPNG
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils download.file
+#' @importFrom graphics plot.new
+#' @importFrom graphics rasterImage
 #' @examples
 #'\dontrun{
 #' key <- "123key"
@@ -97,6 +100,8 @@ earth_image <- function(key, lon, lat, date, cloud_score = TRUE, plot = FALSE, m
 #'
 #' @param image_png image downloaded using earth_image.
 #' @seealso earth_image
+#' @importFrom graphics plot.new
+#' @importFrom graphics rasterImage
 #' @examples
 #'\dontrun{
 #' key <- "123key"
