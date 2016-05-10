@@ -23,16 +23,9 @@
 #'
 #' @importFrom jsonlite fromJSON
 #' @export
-earth_asset <- function(key, lon, lat, start_date, end_date = Sys.Date()){
-  tryCatch({
-    start_date <- as.Date(start_date)
-    end_date <- as.Date(end_date)
-  },
-  error = function(e){
-    stop("Date parameters must be YYYY-MM-DD")
-  })
+earth_asset <- function(key, lon, lat, start_date, end_date = Sys.Date()) {
 
-  # Validate a few things
+  # Validate parameters and fail fast
   if (!is.numeric(lon)) {
     stop("Lon parameter must be numeric")
   }
@@ -40,46 +33,43 @@ earth_asset <- function(key, lon, lat, start_date, end_date = Sys.Date()){
     stop("Lat parameter must be numeric")
   }
 
-  # fix dates
-  if (Sys.Date() == end_date) {
-    difdate <- FALSE
+  tryCatch({
+    start_date <- as.Date(start_date)
+    end_date <- as.Date(end_date)
+  },
+  error = function(e) {
+    stop("Date parameters must be YYYY-MM-DD")
+  })
+
+  # construct the query URL with parameters
+  query <- sprintf("%s?lon=%s&lat=%s&begin=%s&api_key=%s",
+                   "https://api.nasa.gov/planetary/earth/assets",
+                   lon, lat, start_date, key)
+
+  # add "end" parameter if necessary
+  if (Sys.Date() != end_date) {
+    query <- sprintf("%s&end=%s", query, end_date)
+  }
+
+  reply <- fromJSON(query)
+
+  if ("error" %in% names(reply)) {
+    stop(paste0("NASA API Error\n",
+                "The following is the output: ", reply$error ))
+  }
+
+  coordinates <- sprintf("%s %s", lon, lat)
+
+  # data.frame will be returned
+  if (reply$count < 1) {
+    data.frame("date" = "1900-01-01",
+               "id" = "NO RESULTS",
+               "type" = "Point",
+               "coordinates" = coordinates)
   } else {
-    difdate <- TRUE
+    data.frame("date" = reply$results$date,
+               "id" = reply$results$id,
+               "type" = "Point",
+               "coordinates" = coordinates)
   }
-
-  h <- "https://api.nasa.gov/planetary/earth/assets?"
-
-  query <- paste0(h,
-                  "lon=", lon, "&",
-                  "lat=", lat, "&",
-                  "begin=", start_date, "&",
-                  if (difdate) {
-                    paste0("end=", end_date, "&api_key=", key)
-                  } else {
-                    paste0("&api_key=",key)
-                  })
-
-  s <- fromJSON(query)
-
-  if ("error" %in% names(s)) {
-    stop(cat(paste0("NASA API Error \n",
-                    "The following is the output: ", s$error )))
-  }
-
-  # coordinates (to be used elsewhere)
-  type <- "Point"
-  coordinates <- paste0(as.character(lon), " ", as.character(lat))
-
-  if (s$count < 1) {
-    df <- data.frame("date" = "1900-01-01",
-                     "id" = "NO RESULTS",
-                     "type" = type,
-                     "coordinates" = coordinates)
-  } else {
-    df <- data.frame("date" = s$results$date,
-                     "id" = s$results$id,
-                     "type" = type,
-                     "coordinates" = coordinates)
-  }
-  return(df)
 }
