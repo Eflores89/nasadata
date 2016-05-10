@@ -7,7 +7,7 @@
 #'   includes both.
 #' @param sources Accepts character id strings from EONET sources (see
 #'   \code{eonet_sources})
-#' @param category_id Accepts number id strings from EONET category tree (se
+#' @param category_id Accepts number id strings from EONET category tree (see
 #'   \code{eonet_categories})
 #' @param limit Limit of events to download. If \code{LimitType = "days"} this
 #'   is not considered. Defaults to 10.
