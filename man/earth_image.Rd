@@ -8,27 +8,36 @@ earth_image(key, lon, lat, date, cloud_score = TRUE, plot = FALSE,
   meta_only = FALSE)
 }
 \arguments{
-\item{key}{Key for API authentication.}
+\item{key}{API Key for authentication.}
 
-\item{lon}{Longitud of coordinate position.}
+\item{lon}{Longitude of coordinate position.}
 
-\item{lat}{Latitud of coordinate position.}
+\item{lat}{Latitude of coordinate position.}
 
-\item{date}{In YYYY-MM-DD format. The API wil return the image that is closest to this date.}
+\item{date}{In YYYY-MM-DD format. The API wil return the image that is
+closest to this date.}
 
-\item{cloud_score}{Gives a score of percentage of cloud cover, via algorithm (see official documentation). Defaults to TRUE.}
+\item{cloud_score}{Gives a score of percentage of cloud cover, via algorithm
+(see official documentation). Defaults to TRUE.}
 
 \item{plot}{If TRUE will plot the image via generic plot function.}
 
-\item{meta_only}{if TRUE will only download the meta data for the image.}
+\item{meta_only}{If TRUE will only download the meta data for the image.}
+}
+\value{
+Returns a \code{list} of two elements:
+\item{image_metadata}{This contains a \code{data.frame}}
+\item{image_raster_data}{This contains an \code{array} representing a raster}
 }
 \description{
-Calls NASA's Earth Imagery API and returns list with identification information and image.
+Calls NASA's Earth Imagery API and returns list with identification
+information and image.
 }
 \examples{
 \dontrun{
 key <- "123key"
 img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
 }
+
 }
 

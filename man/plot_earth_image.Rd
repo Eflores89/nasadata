@@ -4,14 +4,18 @@
 \alias{plot_earth_image}
 \title{Plots the image to device}
 \usage{
-plot_earth_image(image_png)
+plot_earth_image(image_raster_data)
 }
 \arguments{
-\item{image_png}{image downloaded using earth_image.}
+\item{image_raster_data}{image downloaded using earth_image.}
+}
+\value{
+nothing
 }
 \description{
-To avoid S4 Classes and methods, this small wrapper simply plots an image from NASA.
-If the purpose is to this interactively on one image, set the parameter plot = TRUE in \code{earth_image}
+To avoid S4 Classes and methods, this small wrapper simply plots an image
+from NASA. If the purpose is to this interactively on one image, set the
+parameter \code{plot = TRUE} in \code{earth_image}.
 }
 \examples{
 \dontrun{
@@ -19,6 +23,7 @@ key <- "123key"
 img <- earth_image(key, -100.31008, 25.66779, "2016-01-01")
 plot_earth_image(img$image_png)
 }
+
 }
 \seealso{
 earth_image
