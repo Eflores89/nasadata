@@ -13,6 +13,7 @@ Imports:
     png,
     jsonlite
 Suggests:
-    testthat
+    testthat,
+    curl
 LazyData: TRUE
 RoxygenNote: 5.0.1
