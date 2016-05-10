@@ -6,15 +6,16 @@
 \usage{
 eonet_sources()
 }
+\value{
+Returns \code{data.frame} with 4 columns:
+\item{id}{Unique id (can be used to filter \code{earth_event})}
+\item{title}{Title of source}
+\item{source}{Official source URL}
+\item{link}{Direct json link (the result is equal to filtering all
+            \code{earth_event} with source)}
+}
 \description{
 Calls NASA's EONET Webservice and returns all sources available.
-}
-\details{
-Returns data.frame with 4 columns
- @field id Unique id (can be used to filter \code{earth_event})
- @field title Title of source
- @field source Official source URL
- @field link Direct json link (the result is equal to filtering all \code{earth_event} with source)
 }
 \examples{
 \dontrun{

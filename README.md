@@ -1,6 +1,9 @@
 # nasadata 
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nasadata)](http://cran.r-project.org/package=nasadata) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/nasadata)
+[![Build Status](https://travis-ci.org/vsimko/nasadata.svg)](https://travis-ci.org/vsimko/nasadata)
+[![codecov.io](https://codecov.io/github/vsimko/nasadata/coverage.svg?branch=master)](https://codecov.io/github/vsimko/nasadata?branch=master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nasadata)](http://cran.r-project.org/package=nasadata)
+![downloads](http://cranlogs.r-pkg.org/badges/grand-total/nasadata)
 
 *An R interface to access some of NASA's API's*
 

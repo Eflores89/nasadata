@@ -15,15 +15,25 @@ earth_asset(key, lon, lat, start_date, end_date = Sys.Date())
 
 \item{start_date}{Start date to search for image. In YYYY-MM-DD format.}
 
-\item{end_date}{End date to search for image. In YYYY-MM-DD format. Defaults to current system date.}
+\item{end_date}{End date to search for image. In YYYY-MM-DD format. Defaults
+to current system date.}
+}
+\value{
+Returns a \code{data.frame} containing the following columns:
+\item{date}{date of the sample}
+\item{id}{identifier of the sample or "NO RESULTS"}
+\item{type}{type of the sample, currenlty always "Point"}
+\item{coordinates}{latitude and longitude as a string delimited by a space}
 }
 \description{
-Calls NASA's Earth Imagery Assets API and returns data.frame with information on time and location of images between two dates.
+Calls NASA's Earth Imagery Assets API and returns data.frame with information
+on time and location of images between two dates.
 }
 \examples{
 \dontrun{
 key <- "123key"
 img <- earth_asset(key, -100.31008, 25.66779, "2016-01-01")
 }
+
 }
 

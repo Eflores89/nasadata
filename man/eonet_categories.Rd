@@ -2,24 +2,26 @@
 % Please edit documentation in R/eonet.R
 \name{eonet_categories}
 \alias{eonet_categories}
-\title{Calls EONET category webservice}
+\title{Calls EONET category webservice.}
 \usage{
 eonet_categories()
 }
+\value{
+Returns \code{data.frame} with 5 columns:
+\item{id}{Unique id (can be used to filter \code{earth_event})}
+\item{title}{Title of category}
+\item{link}{Direct json link (the result is equal to filtering all
+            \code{earth_event} with category)}
+\item{description}{Description of category}
+\item{layers}{Layers of category (see oficial documentation)}
+}
 \description{
 Calls NASA's EONET Webservice and returns all categories available.
-}
-\details{
-Returns data.frame with 5 columns
- @field id Unique id (can be used to filter \code{earth_event})
- @field title Title of category
- @field link Direct json link (the result is equal to filtering all \code{earth_event} with category)
- @field description Description of category
- @field layers Layers of category (see oficial documentation)
 }
 \examples{
 \dontrun{
 categories <- eonet_categories()
 }
+
 }
 
