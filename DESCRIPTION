@@ -1,8 +1,8 @@
 Package: nasadata
 Type: Package
 Title: Interface to Various NASA API's
-Version: 0.9.1
-Author: Eduardo Flores
+Version: 0.10.0
+Author: Eduardo Flores, Viliam Simko
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
 Description: Provides functions to access NASA's Earth Imagery and Assets API
     and the Earth Observatory Natural Event Tracker (EONET) webservice.
