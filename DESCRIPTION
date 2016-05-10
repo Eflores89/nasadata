@@ -11,8 +11,7 @@ Imports:
     plyr,
     dplyr,
     png,
-    jsonlite,
-    curl
+    jsonlite
 Suggests:
     testthat
 LazyData: TRUE
