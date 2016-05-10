@@ -4,18 +4,19 @@
 \alias{earth_event}
 \title{Calls EONET webservice}
 \usage{
-earth_event(status = "all", sources = "all", category_id = "all",
-  limit = 10, days = 20, LimitType = "limit", TrySimplify = TRUE)
+earth_event(status = c("all", "open", "closed"), sources = "all",
+  category_id = "all", limit = 10, days = 20, LimitType = c("limit",
+  "days", "all"), TrySimplify = TRUE)
 }
 \arguments{
-\item{status}{Accepts 1 or 0 (open or closed). Defaults to "all", which
-includes both.}
+\item{status}{Accepts "open" or "closed".
+Defaults to "all", which includes both.}
 
-\item{sources}{Accepts character id strings from EONET sources (see
-\code{eonet_sources})}
+\item{sources}{Accepts character id strings from EONET sources
+(see \code{eonet_sources})}
 
-\item{category_id}{Accepts number id strings from EONET category tree (se
-\code{eonet_categories})}
+\item{category_id}{Accepts number id strings from EONET category tree
+(see \code{eonet_categories})}
 
 \item{limit}{Limit of events to download. If \code{LimitType = "days"} this
 is not considered. Defaults to 10.}

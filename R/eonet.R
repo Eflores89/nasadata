@@ -3,12 +3,12 @@
 #' Calls NASA's Earth Observatory Natural Event Tracker (EONET) webservice and
 #' returns a list containing individual events as \code{data.frame}.
 #'
-#' @param status Accepts 1 or 0 (open or closed). Defaults to "all", which
-#'   includes both.
-#' @param sources Accepts character id strings from EONET sources (see
-#'   \code{eonet_sources})
-#' @param category_id Accepts number id strings from EONET category tree (see
-#'   \code{eonet_categories})
+#' @param status Accepts "open" or "closed".
+#'               Defaults to "all", which includes both.
+#' @param sources Accepts character id strings from EONET sources
+#'   (see \code{eonet_sources})
+#' @param category_id Accepts number id strings from EONET category tree
+#'   (see \code{eonet_categories})
 #' @param limit Limit of events to download. If \code{LimitType = "days"} this
 #'   is not considered. Defaults to 10.
 #' @param days Limit of days (less than today) to download events from.
@@ -34,118 +34,104 @@
 #' @importFrom plyr ldply
 #' @importFrom jsonlite fromJSON
 #' @export
-earth_event <- function(status = "all",
+earth_event <- function(status = c("all", "open", "closed"),
                         sources = "all",
                         category_id = "all",
                         limit = 10,
                         days = 20,
-                        LimitType = "limit",
+                        LimitType = c("limit", "days", "all"),
                         TrySimplify = TRUE)
 {
 
   events_url <- "http://eonet.sci.gsfc.nasa.gov/api/v2.1/events?"
-  # Limits
-  if (LimitType == "limit") {
-    limit <- paste0("limit=",limit)
-  } else {
-    if (LimitType == "days") {
-      limit <- paste0("days=",days)
-    } else {
-      if (LimitType == "all") {
-        limit <- paste0("limit=",limit,"&days=",days)
-      } else {
-        #fail
-        stop("LimitType is not recognizable. Set to: limit, days or all")
-      }
-    }
-  }
 
-  # - Start creating series
+  # checking unsupported values
+  status <- match.arg(status)
+  LimitType <- match.arg(LimitType)
+
+  # Limits
+  limit <- switch(LimitType,
+    limit = sprintf("limit=%s", limit),
+    days = sprintf("days=%s", days),
+    all = sprintf("limit=%s&days=%s", limit, days),
+    stop("programming error. should not reach this code")
+  )
 
   # status ----
-  if (status == "all") {
-    s <- paste0(events_url, limit)
-  } else {
-    if (status == 1) {
-      s <- paste0(events_url, limit, "&status=open")
-    } else {
-      if (status == 0) {
-        s <- paste0(events_url, limit, "&status=open")
-      } else {
-        #fail
-        stop("Status is not 1 (open) or 0 (closed)")
-      }
-    }
-  }
+  # TODO: the query construction should be implemented better
+  query <- switch(as.character(status),
+    all = paste0(events_url, limit),
+    open = paste0(events_url, limit, "&status=open"),
+    closed = paste0(events_url, limit, "&status=closed"),
+    stop("programming error. should not reach this code")
+  )
 
   # sources ----
-  if (sources == "all") {
-    s <- s
-  } else {
-    s <- paste0(s, "&source=", sources)
+  if (sources != "all") {
+    query <- paste0(query, "&source=", sources)
   }
 
   # categories ----
-  if (category_id == "all") {
-    s <- s
-  } else {
+  if (category_id != "all") {
+    # TODO: Previously constructed "s" gets replaced within this branch !!!!
     # Use Category API...
     cs <- eonet_categories()
-    if (category_id %in% cs$id) {
-      s <- subset(cs, id == category_id)
-      s <- s$link
-    }else{
+    query <- cs[cs$id == category_id,]$link
+    if (length(query) == 0) {
       stop("Category id is not valid. Review using eonet_categories()")
     }
   }
 
   # download
-  e <- fromJSON(s)
+  reply <- fromJSON(query)
 
   # error check
-  if ("error" %in% names(s)) {
-    stop(cat(paste0("NASA Webservice Error \n",
-                    "The following is the output: ", s$error)))
+  if ("error" %in% names(reply)) {
+    stop(paste0("NASA Webservice Error\n",
+                "The following is the output: ", reply$error))
   }
-  if (length(e$events) < 1) {
-    stop(cat(paste0("No events found. Change parameters. \n",
-                    "using: ", s)))
+  if (length(reply$events) < 1) {
+    stop(paste0("No events found. Change parameters.\n",
+                "using: ", reply))
   }
 
   # event
-  events <- e$events
-  events <- data.frame("event_id" = as.character(events$id),
-                       "event_title"  = events$title,
-                       "event_description" = events$description,
-                       "event_link" = events$link,
+  events <- data.frame("event_id" = reply$events$id,
+                       "event_title"  = reply$events$title,
+                       "event_description" = reply$events$description,
+                       "event_link" = reply$events$link,
                        stringsAsFactors = FALSE)
 
-  list_to_df <- function(l) {
-    df <- as.data.frame(base::t(base::sapply(X = l, FUN = "[")))
-    return(df)
-  }
+  # --------------------------------
+  # TODO: needs refactoring
+  # --------------------------------
+  list_to_df <- function(l) as.data.frame(t(sapply(X = l, FUN = "[")))
 
   # category ----
-  names(e$events$categories) <- e$events$id
-  categories <- list_to_df(e$events$categories)
+  names(reply$events$categories) <- reply$events$id
+  categories <- list_to_df(reply$events$categories)
     # Replace names and add new column...
-      nn <- paste0("category_",names(categories))
+      nn <- paste0("category_", names(categories))
       names(categories) <- nn
   categories$event_id <- as.character(row.names(categories))
+
   # sources ------
-  sources <- e$events$sources
-    names(sources) <- as.character(e$events$id)
+  sources <- reply$events$sources
+    names(sources) <- as.character(reply$events$id)
   sources <- plyr::ldply(sources, rbind)
     names(sources) <- c("event_id", "source_id", "source_url")
 
   # geometry -----
-  geo <- e$events$geometries
-  names(geo) <- as.character(e$events$id)
+  geo <- reply$events$geometries
+  names(geo) <- as.character(reply$events$id)
+  # --------------------------------
+  # TODO: end of "needs refactoring"
+  # --------------------------------
 
   # Metadata
-  meta <- data.frame("search_title" = e$title,
-                     "search_url" = e$link,
-                     "search_description" = e$description)
+  meta <- data.frame("search_title" = reply$title,
+                     "search_url" = reply$link,
+                     "search_description" = reply$description)
 
   # unite and final parse ----
   list("Events" = events,
@@ -175,9 +161,8 @@ earth_event <- function(status = "all",
 #' @importFrom jsonlite fromJSON
 #' @export
 eonet_categories <- function() {
-  categories_url <- "http://eonet.sci.gsfc.nasa.gov/api/v2.1/categories"
-  e <- fromJSON(categories_url)
-  as.data.frame(e$categories) # this will be returned
+  reply <- fromJSON("http://eonet.sci.gsfc.nasa.gov/api/v2.1/categories")
+  as.data.frame(reply$categories)
 }
 
 #' Calls EONET sources webservice
@@ -198,7 +183,6 @@ eonet_categories <- function() {
 #' @importFrom jsonlite fromJSON
 #' @export
 eonet_sources <- function() {
-  sources_url <- "http://eonet.sci.gsfc.nasa.gov/api/v2.1/sources"
-  e <- fromJSON(sources_url)
-  e$sources # this will be returned
+  reply <- fromJSON("http://eonet.sci.gsfc.nasa.gov/api/v2.1/sources")
+  as.data.frame(reply$sources)
 }
