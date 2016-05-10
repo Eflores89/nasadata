@@ -2,9 +2,9 @@
 language: r
 
 # see also https://docs.travis-ci.com/user/multi-os/
+# building on "osx" temporarily disabled
 os:
   - linux
-  - osx
 
 # Using the package cache to store R package dependencies can significantly
 # speed up build times and is recommended for most builds.
