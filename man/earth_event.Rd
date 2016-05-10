@@ -8,26 +8,43 @@ earth_event(status = "all", sources = "all", category_id = "all",
   limit = 10, days = 20, LimitType = "limit", TrySimplify = TRUE)
 }
 \arguments{
-\item{status}{Accepts 1 or 0 (open or closed). Defaults to "all", which includes both.}
+\item{status}{Accepts 1 or 0 (open or closed). Defaults to "all", which
+includes both.}
 
-\item{sources}{Accepts character id strings from EONET sources (see \code{eonet_sources})}
+\item{sources}{Accepts character id strings from EONET sources (see
+\code{eonet_sources})}
 
-\item{category_id}{Accepts number id strings from EONET category tree (se \code{eonet_categories})}
+\item{category_id}{Accepts number id strings from EONET category tree (se
+\code{eonet_categories})}
 
-\item{limit}{Limit of events to download. If LimitType = "days" this is not considered. Defaults to 10.}
+\item{limit}{Limit of events to download. If \code{LimitType = "days"} this
+is not considered. Defaults to 10.}
 
-\item{days}{Limit of days (less than today) to download events from. If LimitType = "limit" this is not considered. Defaults to 20.}
+\item{days}{Limit of days (less than today) to download events from. If
+\code{LimitType = "limit"} this is not considered. Defaults to 20.}
 
-\item{LimitType}{Type of limit to consider: "limit" (count of events), "days" (days less than today) or "all" (both limits).}
+\item{LimitType}{Type of limit to consider: "limit" (count of events), "days"
+(days less than today) or "all" (both limits).}
 
-\item{TrySimplify}{If TRUE tries to coerce category and event data.frames into one (successful if there is one category per event).}
+\item{TrySimplify}{If TRUE tries to coerce category and event data.frames
+into one (successful if there is one category per event).}
+}
+\value{
+Returns a \code{list} with individual events:
+\item{Events}{\code{data.frame} - TODO description}
+\item{Sources}{\code{data.frame} - TODO description}
+\item{Categories}{\code{data.frame} - TODO description}
+\item{Geography}{\code{list} of \code{data.frame} - TODO description}
+\item{Meta}{\code{data.frame} - TODO description}
 }
 \description{
-Calls NASA's Earth Observatory Natural Event Tracker (EONET) webservice and returns a data.frame with individual event or events.
+Calls NASA's Earth Observatory Natural Event Tracker (EONET) webservice and
+returns a list containing individual events as \code{data.frame}.
 }
 \examples{
 \dontrun{
 event <- earth_event(limit = 1)
 }
+
 }
 
