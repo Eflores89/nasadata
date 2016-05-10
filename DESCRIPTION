@@ -1,7 +1,7 @@
 Package: nasadata
 Type: Package
 Title: Interface to Various NASA API's
-Version: 0.9.0
+Version: 0.9.1
 Author: Eduardo Flores
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
 Description: Provides functions to access NASA's Earth Imagery and Assets API
@@ -12,5 +12,7 @@ Imports:
     dplyr,
     png,
     jsonlite
+Suggests:
+    testthat
 LazyData: TRUE
 RoxygenNote: 5.0.1
