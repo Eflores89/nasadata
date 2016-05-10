@@ -25,7 +25,7 @@
 #'
 #' @importFrom png readPNG
 #' @importFrom jsonlite fromJSON
-#' @importFrom utils download.file
+#' @importFrom RCurl getURLContent
 #' @importFrom graphics plot.new
 #' @importFrom graphics rasterImage
 #' @export
@@ -82,11 +82,7 @@ earth_image <- function(key, lon, lat, date, cloud_score = TRUE, plot = FALSE,
   if (meta_only) {
     image_raster_data <- NULL
   } else {
-    # TODO: this could be implemented without using tempfile
-    z <- tempfile()
-    suppressMessages(download.file(s$url, z, mode = "wb", quiet = TRUE))
-    image_raster_data <- readPNG(z)
-    file.remove(z)
+    image_raster_data <- readPNG(getURLContent(s$url))
   }
 
   if (plot) {
