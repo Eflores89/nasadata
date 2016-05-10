@@ -20,8 +20,8 @@ includes both.}
 \item{limit}{Limit of events to download. If \code{LimitType = "days"} this
 is not considered. Defaults to 10.}
 
-\item{days}{Limit of days (less than today) to download events from. If
-\code{LimitType = "limit"} this is not considered. Defaults to 20.}
+\item{days}{Limit of days (less than today) to download events from.
+If \code{LimitType = "limit"} this is not considered. Defaults to 20.}
 
 \item{LimitType}{Type of limit to consider: "limit" (count of events), "days"
 (days less than today) or "all" (both limits).}
