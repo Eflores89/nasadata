@@ -11,7 +11,7 @@ test_that("Fetching image from Earth Imagery API (metadata + raster)", {
   expect_equal(ncol(img$image_metadata), 4)
   expect_true(is.character(img$image_metadata$Date))
   expect_true(is.character(img$image_metadata$URL))
-  expect_true(is.character(img$image_metadata$CloudScore))
+  expect_true(is.numeric(img$image_metadata$CloudScore))
   expect_true(is.character(img$image_metadata$ID))
 })
 
@@ -27,6 +27,6 @@ test_that("Fetching image from Earth Imagery API (metadata only)", {
   expect_equal(ncol(img$image_metadata), 4)
   expect_true(is.character(img$image_metadata$Date))
   expect_true(is.character(img$image_metadata$URL))
-  expect_true(is.character(img$image_metadata$CloudScore))
+  expect_true(is.numeric(img$image_metadata$CloudScore))
   expect_true(is.character(img$image_metadata$ID))
 })
